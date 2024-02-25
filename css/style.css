@@ -1,0 +1,7 @@
+.background {
+    background-image: url(/resources/sprites/background/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio: 1 / 1;
+}

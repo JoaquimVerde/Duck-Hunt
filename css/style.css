@@ -3,19 +3,27 @@
     padding: 0;
 }
 
-.sky {
-    background-image: url(/resources/sprites/background/sky1.png);
-    background-size: cover;
-    background-position: center;
+.game {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
     height: 100vh;
     cursor: crosshair;
 }
 
-.bushes {
-    background-image: url(/resources/sprites/background/bushes.png);
+.sky {
+    grid-row: 1;
+    grid-column: 1;
+    background-image: url(/resources/sprites/background/sky1.png);
     background-size: 100% 100%;
-    background-position: center;
+    z-index: 0;
+}
+
+.bushes {
+    grid-row: 1;
+    grid-column: 1;
+    background-image: url(/resources/sprites/background/bushes.png);
     background-repeat: no-repeat;
-    height: 100%;
-    z-index: 1;
+    background-size: 100% 100%;
+    z-index: 10;
 }

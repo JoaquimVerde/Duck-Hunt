@@ -1,13 +1,16 @@
 .duck {
-    grid-row: 1;
-    grid-column: 1;
     background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
     background-position: center;
     width: 68px;
     height: 60px;
-    justify-self: center;
-    align-self: center;
-    animation: fly-diagonal-down-right 1s steps(3) infinite;
+    animation: fly-right 1s steps(3) infinite;
+    z-index: 5;
+}
+
+.duck-container {
+    position: absolute;
+    grid-row: 1;
+    grid-column: 1;
     z-index: 5;
 }
 
@@ -43,12 +46,12 @@
     }
 }
 
-@keyframes fly-diagonal-up-right {
+@keyframes fly-up-right {
     0% { background-position: -9px -299px; }
     100% { background-position: -245px -299px; }
 }
 
-@keyframes fly-diagonal-up-left {
+@keyframes fly-up-left {
     0% { 
         background-position: -9px -299px; 
         transform: rotateY(180deg);
@@ -58,18 +61,18 @@
         transform: rotateY(180deg);}
 }
 
-@keyframes fly-diagonal-down-right {
+@keyframes fly-down-right {
     0% { 
         background-position: -9px -299px; 
-        transform: rotate(0deg) rotateY(-180deg);;
+        transform: rotate(90deg);
     }
     100% { 
         background-position: -245px -299px; 
-        transform: rotate(0deg) rotateY(-180deg);;
+        transform: rotate(90deg);
     }
 }
 
-@keyframes fly-diagonal-down-left {
+@keyframes fly-down-left {
     0% { 
         background-position: -9px -299px; 
         transform: rotate(-90deg) rotateY(180deg);
@@ -79,4 +82,3 @@
         transform: rotate(-90deg) rotateY(180deg);
     }
 }
-

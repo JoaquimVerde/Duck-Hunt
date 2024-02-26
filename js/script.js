@@ -1,31 +1,9 @@
-// Get the duck element
-const duck = document.getElementById('duck');
+const duckContainer = document.querySelector(".duck-container");
 
-// Define the duck's initial position and speed
-let duckX = 0;
-let duckY = 0;
-let speed = 5;
-
-// Define a function to make the duck fly
-function fly() {
-    // Update the duck's position
-    duckX += speed;
-    duckY += speed;
-
-    // Apply the new position to the duck's style
-    duck.style.left = `${duckX}px`;
-    duck.style.top = `${duckY}px`;
-
-    // Reverse direction when the duck hits the edge of the screen
-    if (duckX > window.innerWidth || duckY > window.innerHeight) {
-        speed = -speed;
-    } else if (duckX < 0 || duckY < 0) {
-        speed = Math.abs(speed);
+function moveDuck() {
+    const randomX = Math.random() * window.innerWidth - 68;
+    const randomY = Math.random() * window.innerHeight/1.5 - 60;
+    duckContainer.style.transition = "all 5s";
+    duckContainer.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
-
-    // Call the fly function again after a delay
-    setTimeout(fly, 100);
-}
-
-// Start the duck flying
-fly();
+    setInterval(moveDuck, 1000);

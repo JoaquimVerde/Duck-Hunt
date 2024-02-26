@@ -1,0 +1,82 @@
+.duck {
+    grid-row: 1;
+    grid-column: 1;
+    background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
+    background-position: center;
+    width: 68px;
+    height: 60px;
+    justify-self: center;
+    align-self: center;
+    animation: fly-diagonal-down-right 1s steps(3) infinite;
+    z-index: 5;
+}
+
+@keyframes fly-right {
+    0% { background-position: -1px -220px; }
+    100% { background-position: -245px -220px; }
+}
+
+@keyframes fly-left {
+    0% { 
+        background-position: -1px -220px;
+        transform: rotateY(180deg);
+     }
+    100% { 
+        background-position: -245px -220px;
+        transform: rotateY(180deg);
+     }
+}
+
+@keyframes fly-up {
+    0% { background-position: -1px -379px;}
+    100% { background-position: -245px -381px;}
+}
+
+@keyframes fly-down {
+    0% { 
+        background-position: -1px -379px;
+        transform: rotate(180deg);
+    }
+    100% { 
+        background-position: -245px -381px;
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes fly-diagonal-up-right {
+    0% { background-position: -9px -299px; }
+    100% { background-position: -245px -299px; }
+}
+
+@keyframes fly-diagonal-up-left {
+    0% { 
+        background-position: -9px -299px; 
+        transform: rotateY(180deg);
+    }
+    100% { 
+        background-position: -245px -299px; 
+        transform: rotateY(180deg);}
+}
+
+@keyframes fly-diagonal-down-right {
+    0% { 
+        background-position: -9px -299px; 
+        transform: rotate(0deg) rotateY(-180deg);;
+    }
+    100% { 
+        background-position: -245px -299px; 
+        transform: rotate(0deg) rotateY(-180deg);;
+    }
+}
+
+@keyframes fly-diagonal-down-left {
+    0% { 
+        background-position: -9px -299px; 
+        transform: rotate(-90deg) rotateY(180deg);
+    }
+    100% { 
+        background-position: -245px -299px; 
+        transform: rotate(-90deg) rotateY(180deg);
+    }
+}
+

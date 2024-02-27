@@ -9,15 +9,121 @@
     height: 100px;
     z-index: 20;
 }
-#duckHitBar{
-    background: url(/resources/sprites/scoreImages/hit/duckwhite.png) repeat;
-    background-repeat: repeat-x;
+.duckHitBar1{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 46%;
+    left: 47%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
-    width: 20px;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar2{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 48.2%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+}
+.duckHitBar3{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 49.4%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar4{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 50.6%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar5{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 51.8%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar6{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar7{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 54.2%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar8{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 55.4%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar9{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 56.6%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
+    height: 30px;
+    z-index: 21;
+
+}
+.duckHitBar10{
+    background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
+    position: absolute;
+    top: 93%;
+    left: 57.8%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    width: 25px;
     height: 30px;
     z-index: 21;
 

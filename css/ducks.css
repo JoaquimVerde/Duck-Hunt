@@ -1,6 +1,5 @@
 .duck-container {
     position: absolute;
-    animation: flight 2s infinite;
     z-index: 20;
 }
 
@@ -9,7 +8,7 @@
     width: 70px;
     height: 60px;
     animation: fly-right 0.5s steps(3) infinite;
-    z-index: 20;
+    z-index: 5;
 }
 
 @keyframes fly-right {

@@ -1,46 +1,32 @@
-const duckContainer = document.querySelector('.duck-container');
-let currentWidth = duckContainer.style.left;
-let currentHeight = duckContainer.style.bottom;
-let posX;
-let posY;
+const duckContainer = document.querySelector(".duck-container");
 
-/* const fly = [
-]; */
+let posX = -500;
+let posY = 25;
 
-function moveDuckStartingPosition() {
-  posX += 20;
-  posY += 200;
-  duckContainer.style.bottom = posX + 'px';
-  duckContainer.style.left = posY + 'px';
-  requestAnimationFrame(moveDuckStartingPosition);
-
-}
-
-const timing = {
-    duration: 3000,
-    iterations: Infinity,
+function initalPosition() {
+    duckContainer.style.bottom = "25%";
+    duckContainer.style.left = "50%";
 };
 
-function fly() {
-  posX += 20;
-  posY += 200;
-  duckContainer.style.bottom = posX + 'px';
-  duckContainer.style.left = posY + 'px';
-  requestAnimationFrame(fly);
+const moveDuck = [
+    { transform: "translate(0, 0)" },
+    { transform: "translate("+ posX +"px, "+ posX  +"px)" }
+];
+
+const moveAgain = [
+    { transform: "translate("+ posX +"px, "+ posX +"px)" },
+    { transform: "translate("+ posY +"px, "+ posY +"px)" }
+];
+
+const duration = {
+    duration: 500,
+    easing: "linear",
+    fill: "forwards"
 }
 
 
+window.onload = initalPosition;
 
-function getRandomWidth(min,max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-function getRandomHeight(min,max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;   
-}
-
-window.onload = function() {
-  moveDuckStartingPosition();
-  fly();
+duckContainer.animate(moveDuck, duration).onfinish = () => {
+  duckContainer.animate(moveAgain, duration);
 }

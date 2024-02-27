@@ -1,0 +1,86 @@
+
+#dog{
+    position: absolute;
+    top: 50rem;
+    transform: scale(2);
+}
+
+
+.walk {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+	width: 60px;
+	height: 45px;
+    animation: walk 300ms steps(3) infinite, 7s slideIn;    
+}
+
+@keyframes walk {
+    0% {
+        background-position-x: -5px;
+    }
+    100% {
+        background-position-x: -180px;
+    }
+}
+@keyframes slideIn {
+    from {
+        margin-right: 10%
+    }
+    to {
+        margin-left: 45%;
+    }
+}
+
+.jump {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+    margin-left: 42%;
+	width: 60px;
+	height: 45px;
+    animation: jump 900ms steps(2) forwards;
+}
+
+@keyframes jump {
+    0% {
+        background-position: -5px -59px;
+    }
+    100% {
+        background-position: -135px -59px;
+        margin-top: -5rem;
+        margin-left: 55rem;
+
+    }
+}
+
+.smell {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+    margin-left: 42%;
+	width: 60px;
+	height: 45px;
+    animation: smell 900ms steps(2) infinite;
+}
+
+@keyframes smell {
+    0% {
+        background-position-x: -184px;
+    }
+    100% {
+        background-position-x: -310px;
+    }
+}
+
+.laugh {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+    margin-left: 42%;
+    margin-top: -5rem;
+	width: 60px;
+	height: 45px;
+    animation: laugh 900ms steps(2) infinite;
+}
+
+@keyframes laugh {
+    0% {
+        background-position: -197px -63px;
+    }
+    100% {
+        background-position: -315px -63px;
+    }
+}

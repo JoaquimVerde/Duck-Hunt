@@ -1,12 +1,7 @@
-.bg {
-    background-color: aquamarine;
-    height: 100vh;
-}
-
 .duck-container {
     position: absolute;
     animation: flight 2s infinite;
-    z-index: 5;
+    z-index: 20;
 }
 
 .duck {
@@ -14,7 +9,7 @@
     width: 70px;
     height: 60px;
     animation: fly-right 0.5s steps(3) infinite;
-    z-index: 5;
+    z-index: 20;
 }
 
 @keyframes fly-right {

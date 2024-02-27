@@ -1,27 +1,46 @@
-/* const duckContainer = document.querySelector('.duck-container');
+const duckContainer = document.querySelector('.duck-container');
+let currentWidth = duckContainer.style.left;
+let currentHeight = duckContainer.style.bottom;
+let posX;
+let posY;
 
-const fly = [
-  0% { transform: "translate(0, 0)" },
-  25% { transform: "translate(0, -10%)" },
-  50% { transform: "translate(0, -20%)" },
-  75% { transform: "translate(0, -10%)" },
-  100% { transform: "translate(0, 0)" }
-];
+/* const fly = [
+]; */
+
+function moveDuckStartingPosition() {
+  posX += 20;
+  posY += 200;
+  duckContainer.style.bottom = posX + 'px';
+  duckContainer.style.left = posY + 'px';
+  requestAnimationFrame(moveDuckStartingPosition);
+
+}
 
 const timing = {
     duration: 3000,
     iterations: Infinity,
 };
 
-function flyte() {
-  duckContainer.animate(fly, timing);
+function fly() {
+  posX += 20;
+  posY += 200;
+  duckContainer.style.bottom = posX + 'px';
+  duckContainer.style.left = posY + 'px';
+  requestAnimationFrame(fly);
 }
 
-function moveDuckStartingPosition() {
-    duckContainer.style.bottom = '20%';
-    duckContainer.style.left = '50%';
+
+
+function getRandomWidth(min,max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function getRandomHeight(min,max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;   
 }
 
 window.onload = function() {
   moveDuckStartingPosition();
-} */
+  fly();
+}

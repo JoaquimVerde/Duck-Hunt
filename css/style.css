@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+    height: 100vh;
+    cursor: crosshair;
+}
+
+.sky {
+    grid-row: 1;
+    grid-column: 1;
+    background-image: url(/resources/sprites/background/sky1.png);
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+.bushes {
+    grid-row: 1;
+    grid-column: 1;
+    background-image: url(/resources/sprites/background/bushes.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+}

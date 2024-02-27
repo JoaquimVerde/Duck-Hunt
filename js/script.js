@@ -1,28 +1,24 @@
-// Get the duck container element
-const duckContainer = document.querySelector('.duck-container');
+/* const duckContainer = document.querySelector('.duck-container');
 
-// Function to generate a random number between min and max (inclusive)
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const fly = [
+  { transform: "translateX(50%) translateY(50%)"},
+  { transform: "translateX(100%) translateY(-100%)"},
+];
+
+const timing = {
+    duration: 3000,
+    iterations: Infinity,
+};
+
+function flyte() {
+  duckContainer.animate(fly, timing);
 }
 
-// Function to move the duck container randomly
-function moveDuckContainer() {
-  // Get the window dimensions
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-
-  // Generate random coordinates for the duck container
-  const randomX = getRandomNumber(0, windowWidth - duckContainer.offsetWidth);
-  const randomY = getRandomNumber(0, windowHeight - duckContainer.offsetHeight);
-
-  // Set the position of the duck container
-  duckContainer.style.left = `${randomX}px`;
-  duckContainer.style.top = `${randomY}px`;
+function moveDuckStartingPosition() {
+    duckContainer.style.bottom = '20%';
+    duckContainer.style.left = '50%';
 }
 
-// Call the moveDuckContainer function initially
-moveDuckContainer();
-
-// Call the moveDuckContainer function every 3 seconds
-setInterval(moveDuckContainer, 3000);
+window.onload = function() {
+  moveDuckStartingPosition();
+} */

@@ -5,8 +5,7 @@
 
 .duck-container {
     position: absolute;
-    grid-row: 1;
-    grid-column: 1;
+    /* animation: flight 2s infinite; */
     z-index: 5;
 }
 
@@ -85,4 +84,32 @@
         background-position: -245px -299px; 
         transform: rotate(-90deg) rotateY(180deg);
     }
+}
+
+@keyframes flight {
+    0% {
+        transform: translateX(0px);
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateX(50px);
+        transform: translateY(50px);
+    }
+
+    50% {
+        transform: translateX(100px);
+        transform: translateY(0px);
+    }
+
+    75% {
+        transform: translateX(50px);
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateX(0px);
+        transform: translateY(0px);
+    }
+
 }

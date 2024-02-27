@@ -1,8 +1,11 @@
 /* const duckContainer = document.querySelector('.duck-container');
 
 const fly = [
-  { transform: "translateX(50%) translateY(50%)"},
-  { transform: "translateX(100%) translateY(-100%)"},
+  0% { transform: "translate(0, 0)" },
+  25% { transform: "translate(0, -10%)" },
+  50% { transform: "translate(0, -20%)" },
+  75% { transform: "translate(0, -10%)" },
+  100% { transform: "translate(0, 0)" }
 ];
 
 const timing = {

@@ -5,7 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
-    width: 400px;
+    width: 420px;
     height: 100px;
     z-index: 20;
 }
@@ -13,7 +13,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 47%;
+    left: 46%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -25,7 +25,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 48.2%;
+    left: 47.8%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -36,7 +36,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 49.4%;
+    left: 49.6%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -48,7 +48,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 50.6%;
+    left: 51.2%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -60,7 +60,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 51.8%;
+    left: 53%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -72,7 +72,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 53%;
+    left: 54.8%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -84,7 +84,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 54.2%;
+    left: 56.4%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -96,7 +96,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 55.4%;
+    left: 58.2%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -108,7 +108,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 56.6%;
+    left: 60%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;
@@ -120,7 +120,7 @@
     background-image: url(/resources/sprites/scoreImages/hit/duckwhite.png);
     position: absolute;
     top: 93%;
-    left: 57.8%;
+    left: 61.8%;
     transform: translate(-50%, -50%);
     background-size: 100% 100%;
     width: 25px;

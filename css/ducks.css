@@ -1,16 +1,20 @@
-.duck {
-    background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
-    background-position: center;
-    width: 68px;
-    height: 60px;
-    animation: fly-right 1s steps(3) infinite;
-    z-index: 5;
+.bg {
+    background-color: aquamarine;
+    height: 100vh;
 }
 
 .duck-container {
     position: absolute;
     grid-row: 1;
     grid-column: 1;
+    z-index: 5;
+}
+
+.duck {
+    background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
+    width: 70px;
+    height: 60px;
+    animation: fly-right 0.5s steps(3) infinite;
     z-index: 5;
 }
 

@@ -1,3 +1,4 @@
+
 const dog = document.getElementById("dog");
 
 
@@ -10,9 +11,6 @@ window.onload = () => {
 
 const dogMovement = () => {
 
-
-    console.log("is running!");
-
     dogWalk();
 
     setTimeout(() => {
@@ -24,8 +22,12 @@ const dogMovement = () => {
     }, 6500);
 
     setTimeout(() => {
+        shrinkDog();
+    }, 7000);
+
+    setTimeout(() => {
         hideDog();
-    }, 8200);
+    }, 7050);
 }
 
 
@@ -39,6 +41,9 @@ const dogSmell = () => {
 const dogJump = () => {
     dog.className = "jump";
 }
+const shrinkDog = () => {
+    dog.style.transform = "scale(1)";
+}
 const hideDog = () => {
-    dog.style.display = "none";
+    dog.style.zIndex = "-1";
 }

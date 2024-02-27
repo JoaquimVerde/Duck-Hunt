@@ -1,13 +1,17 @@
 
 #dog{
+    grid-row: 1;
+    grid-column: 1;
     position: absolute;
     top: 50rem;
-    transform: scale(2);
+    transform: scale(3);
+
 }
 
 
 .walk {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
+    z-index: 30;
 	width: 60px;
 	height: 45px;
     animation: walk 300ms steps(3) infinite, 7s slideIn;    
@@ -32,10 +36,11 @@
 
 .jump {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
+    z-index: 30;
     margin-left: 42%;
 	width: 60px;
 	height: 45px;
-    animation: jump 900ms steps(2) forwards;
+    animation: jump 250ms steps(2) forwards, 1s slideUp;
 }
 
 @keyframes jump {
@@ -44,14 +49,22 @@
     }
     100% {
         background-position: -135px -59px;
-        margin-top: -5rem;
-        margin-left: 55rem;
-
+        margin-top: -10rem;
+        margin-left: 60rem;
+    }
+}
+@keyframes slideUp {
+    from {
+        margin-right: 45%
+    }
+    to {
+        margin-left: 55%;
     }
 }
 
 .smell {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
+    z-index: 30;
     margin-left: 42%;
 	width: 60px;
 	height: 45px;
@@ -70,10 +83,11 @@
 .laugh {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     margin-left: 42%;
-    margin-top: -5rem;
+    margin-top: -9rem;
 	width: 60px;
 	height: 45px;
-    animation: laugh 900ms steps(2) infinite;
+    z-index: 30;
+    animation: laugh 400ms steps(2) infinite, 500ms popIn;
 }
 
 @keyframes laugh {
@@ -83,4 +97,34 @@
     100% {
         background-position: -315px -63px;
     }
+}
+
+.hold-one-duck {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+    background-position-x: -315px;
+    margin-left: 42%;
+    margin-top: -11rem;
+	width: 60px;
+	height: 45px;
+    z-index: 30;
+    animation: 500ms popIn;
+}
+@keyframes popIn {
+    0% {
+        margin-top: 1%;
+        z-index: 0;   
+    }
+    100% {
+        z-index: 10;
+    }
+}
+.hold-two-ducks {
+	background: url('/resources/sprites/duck-hunt-sprite.png');
+    background-position: -319px -63px;
+    margin-left: 42%;
+    margin-top: -11rem;
+	width: 60px;
+	height: 45px;
+    z-index: 30;
+    animation: 500ms popIn;
 }

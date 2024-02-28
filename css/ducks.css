@@ -4,6 +4,7 @@
 }
 
 .duck {
+    position: absolute;
     background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
     width: 70px;
     height: 60px;

@@ -3,18 +3,17 @@
     grid-row: 1;
     grid-column: 1;
     position: absolute;
-    top: 50rem;
     transform: scale(3);
-
 }
 
 
 .walk {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     z-index: 30;
+    bottom: 25%;
 	width: 60px;
 	height: 45px;
-    animation: walk 300ms steps(3) infinite, 7s slideIn;    
+    animation: walk 600ms steps(3) infinite, 9s slideIn;    
 }
 
 @keyframes walk {
@@ -37,6 +36,7 @@
 .jump {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     z-index: 30;
+    bottom: 25%;
     margin-left: 42%;
 	width: 60px;
 	height: 45px;
@@ -49,22 +49,22 @@
     }
     100% {
         background-position: -135px -59px;
-        margin-top: -10rem;
-        margin-left: 60rem;
+        bottom: 37%;
     }
 }
 @keyframes slideUp {
     from {
-        margin-right: 45%
+        margin-left: 42%;
     }
     to {
-        margin-left: 55%;
+        margin-left: 50%;
     }
 }
 
 .smell {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     z-index: 30;
+    bottom: 25%;
     margin-left: 42%;
 	width: 60px;
 	height: 45px;
@@ -83,10 +83,10 @@
 .laugh {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     margin-left: 42%;
-    margin-top: -9rem;
+    bottom: 38%;
 	width: 60px;
 	height: 45px;
-    z-index: 30;
+    z-index: 1;
     animation: laugh 400ms steps(2) infinite, 500ms popIn;
 }
 
@@ -103,28 +103,24 @@
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     background-position-x: -315px;
     margin-left: 42%;
-    margin-top: -11rem;
+    bottom: 38%;
 	width: 60px;
 	height: 45px;
-    z-index: 30;
+    z-index: 1;
     animation: 500ms popIn;
 }
 @keyframes popIn {
     0% {
-        margin-top: 1%;
-        z-index: 0;   
-    }
-    100% {
-        z-index: 10;
+        bottom: 25%;   
     }
 }
 .hold-two-ducks {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     background-position: -319px -63px;
     margin-left: 42%;
-    margin-top: -11rem;
+    bottom: 38%;
 	width: 60px;
 	height: 45px;
-    z-index: 30;
+    z-index: 1;
     animation: 500ms popIn;
 }

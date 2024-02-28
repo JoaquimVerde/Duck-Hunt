@@ -15,19 +15,19 @@ const dogMovement = () => {
 
     setTimeout(() => {
         dogSmell();
-    }, 4500);
+    }, 5500);
 
     setTimeout(() => {
         dogJump();
-    }, 6500);
+    }, 7500);
 
     setTimeout(() => {
         shrinkDog();
-    }, 7000);
+    }, 8000);
 
     setTimeout(() => {
         hideDog();
-    }, 7050);
+    }, 8050);
 }
 
 

@@ -11,10 +11,7 @@ const paintRed = () => {
     hitDuck1.style.backgroundSize = "cover";
 
 }
-window.onload = () => {
-   
-    
-}
+
 
 const changeNumOfBullets = (num) => {
     numOfBulletsIma.style.background = "url(/resources/sprites/scoreImages/shot/shot"+num+".png)";

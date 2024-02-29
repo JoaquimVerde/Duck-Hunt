@@ -4,7 +4,7 @@ const dog = document.getElementById("dog");
 
 
 window.onload = () => {
-    /*dogMovement();*/
+    dogMovement();
 }
 
 

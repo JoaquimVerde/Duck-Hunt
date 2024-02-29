@@ -28,48 +28,12 @@ function generateDir() {
 }
 
 function initalPosition() {
-    /* duckContainer.style.left = 50 * game.offsetWidth / 100 + "px";
-    duckContainer.style.bottom = 40 * game.offsetHeight / 100 + "px"; */
     duckContainer.style.transform = 
     "translate("+ generateWidthPixel(25, 75) + "px, "+ 65 * game.offsetHeight / 100 + "px)";
     prevPosX = duckContainer.getBoundingClientRect().x;
     prevPosY = duckContainer.getBoundingClientRect().y;
 };
 initalPosition();
-
-/* function positionX(direction) {
-    if(direction === 1) {
-        let posX = Math.random() * maxWidth;
-        if (currentWidth + posX > maxWidth) {
-            posX = maxWidth - currentWidth;
-        }
-        return posX.toFixed(0);
-    }
-    else {
-        let posX = Math.random() * minWidth * direction;
-        if (currentWidth - posX < minWidth) {
-            posX = currentWidth - minWidth;
-        }
-        return posX.toFixed(0);
-    }
-} */
-
-/* function positionY(direction){
-    if(direction === 1) {
-        let posY = Math.random() * maxHeight;
-        if (currentHeight + posY > maxHeight) {
-            posY = maxHeight - currentHeight;
-        }
-        return posY.toFixed(0);
-    }
-    else {
-        let posY = Math.random() * minHeight * direction;
-        if (currentHeight - posY < minHeight) {
-            posY = currentHeight - minHeight;
-        }
-        return posY.toFixed(0);
-    }
-} */
 
 function positionX() {
     return Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
@@ -78,11 +42,6 @@ function positionX() {
 function positionY() {
     return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
 }
-
-
-/* const firstFlight = [
-    { transform: "translate("+ positionX() + "px, "+ positionY() + "px)" }
-]; */
 
 function otherFlights() {
     const posX = positionX();
@@ -169,11 +128,6 @@ async function animateDuck() {
 }
 
 animateDuck();
-
-/* duckContainer.animate(
-    {transform: "translate("+ maxWidth +"px,"+ maxHeight +"px)"},
-    duration
-) */
 
 function fallingDown() {
     duckContainer.animate(

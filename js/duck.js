@@ -188,3 +188,8 @@ duck.addEventListener("click", (event) => {
     animation.pause();
     fallingDown();
 });
+
+window.onclick = () => {
+    let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
+    audioShuffle.play();
+}

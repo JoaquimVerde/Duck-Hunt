@@ -40,7 +40,7 @@
     margin-left: 42%;
 	width: 60px;
 	height: 45px;
-    animation: jump 250ms steps(2) forwards, 1s slideUp;
+    animation: jump 250ms steps(2) forwards, 3s slideUp, 3s slideDown;
 }
 
 @keyframes jump {
@@ -53,11 +53,26 @@
     }
 }
 @keyframes slideUp {
-    from {
+    0% {
         margin-left: 42%;
     }
-    to {
+    50% {
         margin-left: 50%;
+        bottom: 40%;
+    }
+    100%{
+        margin-left: 55%;
+        bottom: 45%;
+    }
+}
+@keyframes slideDown {
+    0% {
+        margin-left: 50%;
+    }
+    100% {
+        margin-left: 53%;
+        bottom: 30%;
+        z-index: 5;
     }
 }
 
@@ -83,11 +98,12 @@
 .laugh {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     margin-left: 42%;
-    bottom: 38%;
+    bottom: 20%;
 	width: 60px;
 	height: 45px;
     z-index: 1;
-    animation: laugh 400ms steps(2) infinite, 500ms popIn;
+    animation: laugh 400ms steps(2) infinite, popIn 2s linear,  2s popDown 2s linear;
+    
 }
 
 @keyframes laugh {
@@ -103,24 +119,38 @@
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     background-position-x: -315px;
     margin-left: 42%;
-    bottom: 38%;
+    bottom: 20%;
 	width: 60px;
 	height: 45px;
     z-index: 1;
-    animation: 500ms popIn;
+    animation: popIn 2s linear,  2s popDown 2s linear;
 }
 @keyframes popIn {
     0% {
-        bottom: 25%;   
+        bottom: 20%;   
+    }
+    20%{
+        bottom: 37%;
+    }
+    100% {
+        bottom: 38%;
+    }
+}
+@keyframes popDown {
+    0% {
+        bottom: 38%;   
+    }
+    100%{
+        bottom: 20%;
     }
 }
 .hold-two-ducks {
 	background: url('/resources/sprites/duck-hunt-sprite.png');
     background-position: -319px -63px;
     margin-left: 42%;
-    bottom: 38%;
+    bottom: 20%;
 	width: 60px;
 	height: 45px;
     z-index: 1;
-    animation: 500ms popIn;
+    animation: popIn 2s linear,  2s popDown 2s linear;
 }

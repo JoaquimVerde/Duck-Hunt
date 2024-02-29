@@ -4,7 +4,7 @@ const dog = document.getElementById("dog");
 
 
 window.onload = () => {
-    dogMovement();
+    /*dogMovement();*/
 }
 
 
@@ -42,8 +42,20 @@ const dogJump = () => {
     dog.className = "jump";
 }
 const shrinkDog = () => {
-    dog.style.transform = "scale(1)";
+    dog.style.transform = "scale(2)";
 }
 const hideDog = () => {
     dog.style.zIndex = "-1";
+}
+
+const dogLaugh = () => {
+    dog.className = "laugh";
+    let audioShuffle = new Audio('/resources/sounds/wah-wah.mp3');
+    audioShuffle.play();
+}
+const dogHoldOneDuck = () => {
+    dog.className = "hold-one-duck";
+}
+const dogHoldTwoDucks = () => {
+    dog.className = "hold-two-ducks";
 }

@@ -1,4 +1,4 @@
-let hitDuck1= document.getElementById('duckHitBar1');
+
 let numOfBulletsIma = document.getElementById('numOfBullets');
 let numOfBullets = 5;
 
@@ -6,25 +6,33 @@ let numOfBullets = 5;
 
 
 
+
 const paintRed = () => {
-    hitDuck1.style.background = "url(/resources/sprites/scoreImages/hit/duckred.png)";
-    hitDuck1.style.backgroundSize = "cover";
+    hitDuck.style.background = "url(/resources/sprites/scoreImages/hit/duckred.png)";
+    hitDuck.style.backgroundSize = "100% 100%";
 
 }
+let getHitDuckId = (numberOfRound) => {
+   return document.getElementById('duckHitBar'+ numberOfRound);
+}
+let hitDuck= getHitDuckId(8);
+
 
 
 const changeNumOfBullets = (num) => {
     numOfBulletsIma.style.background = "url(/resources/sprites/scoreImages/shot/shot"+num+".png)";
-    numOfBulletsIma.style.backgroundSize = "cover";
+    numOfBulletsIma.style.backgroundSize = "100% 100%";
 }
 let changeNumOfBulletsWithClick = () => {
     if(numOfBullets >= 0){
-     changeNumOfBullets(numOfBullets--);
+     changeNumOfBullets(--numOfBullets);
+     paintRed();
     }
+    
 }
 
 document.addEventListener('click',() => changeNumOfBulletsWithClick());
-document.addEventListener('click',() => paintRed());
+
 
 
 

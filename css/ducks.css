@@ -1,15 +1,13 @@
 .duck-container {
     position: absolute;
-    z-index: 20;
+    z-index: 5;
 }
 
 .duck {
-    position: absolute;
     background: url(/resources/sprites/PikPng.com_duck-hunt-png_1397308.png) no-repeat;
     width: 70px;
     height: 60px;
-    animation: fly-right 0.5s steps(3) infinite;
-    z-index: 5;
+    animation: fly-right 1s steps(3) infinite;
 }
 
 @keyframes fly-right {
@@ -78,5 +76,14 @@
     100% { 
         background-position: -245px -299px; 
         transform: rotate(-90deg) rotateY(180deg);
+    }
+}
+
+@keyframes fall-down {
+    from { 
+        background-position: -3px -461px;
+    }
+    to { 
+        background-position: -97px -459px;
     }
 }

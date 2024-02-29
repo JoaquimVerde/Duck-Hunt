@@ -7,81 +7,140 @@ duckContainer.appendChild(duck);
 game.appendChild(duckContainer);
 
 
-let numberOfMoves = 5;
+let numberOfMoves = 20;
 
 let currentWidth;
 let currentHeight;
 
 let minWidth = game.offsetWidth / 100;
-let maxWidth = 90 * game.offsetWidth / 100;
+let maxWidth = 95 * game.offsetWidth / 100;
 
-let minHeight = 50 * game.offsetHeight / 100;
-let maxHeight = 95 * game.offsetHeight / 100;
+let minHeight = game.offsetHeight / 100;
+let maxHeight = 58 * game.offsetHeight / 100;
 
 let animation;
+
+let prevPosX;
+let prevPosY;
 
 function generateDir() {
     return Math.random() < 0.5 ? -1 : 1;
 }
 
 function initalPosition() {
-    currentWidth = generateWidthPixel(25, 75);
-    currentHeight = generateHeightPixel(33, 33);
-    duckContainer.style.left = currentWidth + "px";
-    duckContainer.style.bottom = currentHeight + "px";
+    /* duckContainer.style.left = 50 * game.offsetWidth / 100 + "px";
+    duckContainer.style.bottom = 40 * game.offsetHeight / 100 + "px"; */
+    duckContainer.style.transform = 
+    "translate("+ generateWidthPixel(25, 75) + "px, "+ 65 * game.offsetHeight / 100 + "px)";
+    prevPosX = duckContainer.getBoundingClientRect().x;
+    prevPosY = duckContainer.getBoundingClientRect().y;
 };
-
 initalPosition();
 
-function positionX(direction) {
+/* function positionX(direction) {
     if(direction === 1) {
         let posX = Math.random() * maxWidth;
         if (currentWidth + posX > maxWidth) {
             posX = maxWidth - currentWidth;
         }
-        return posX;
+        return posX.toFixed(0);
     }
     else {
         let posX = Math.random() * minWidth * direction;
         if (currentWidth - posX < minWidth) {
             posX = currentWidth - minWidth;
         }
-        return posX;
+        return posX.toFixed(0);
     }
-}
+} */
 
-function positionY(direction){
+/* function positionY(direction){
     if(direction === 1) {
         let posY = Math.random() * maxHeight;
         if (currentHeight + posY > maxHeight) {
             posY = maxHeight - currentHeight;
         }
-        return posY;
+        return posY.toFixed(0);
     }
     else {
         let posY = Math.random() * minHeight * direction;
         if (currentHeight - posY < minHeight) {
             posY = currentHeight - minHeight;
         }
-        return posY;
+        return posY.toFixed(0);
+    }
+} */
+
+function positionX() {
+    return Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
+}
+
+function positionY() {
+    return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+}
+
+
+/* const firstFlight = [
+    { transform: "translate("+ positionX() + "px, "+ positionY() + "px)" }
+]; */
+
+function otherFlights() {
+    const posX = positionX();
+    const posY = positionY();
+    changeDuckBackground(posX, posY, prevPosX, prevPosY);
+    prevPosX = posX;
+    prevPosY = posY;
+    console.log(prevPosX);
+    const result = { transform: "translate("+ posX + "px, "+ posY + "px)" }
+    return result;
+}
+
+function checkDirectionX(posX, prevPosX) {
+    if (prevPosX < posX) {
+        return 1;
+}
+    else {
+        return -1;
+    }
+}
+
+function checkDirectionY(posY, prevPosY) {
+    if (prevPosY < posY) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+
+function changeDuckBackground(posX, posY, prevPosX, prevPosY) {
+    const directionX = checkDirectionX(posX, prevPosX);
+    const directionY = checkDirectionY(posY, prevPosY);
+    if (directionX === 1 && directionY === 1) {
+        duck.style.animation = "fly-right 0.3s steps(3) infinite";
+    }
+    else if (directionX === 1 && directionY === -1) {
+        duck.style.animation = "fly-up-right 0.3s steps(3) infinite";
+    }
+    else if (directionX === -1 && directionY === 1) {
+        duck.style.animation = "fly-left 0.3s steps(3) infinite";
+    }
+    else {
+        duck.style.animation = "fly-up-left 0.3s steps(3) infinite";
     }
 }
 
 
-const firstFlight = [
-    { transform: "translate("+ positionX(generateDir()) + "px, "+ positionY(-1) + "px)" }
-];
-
-function otherFlights() {
-    return { transform: "translate("+ positionX(generateDir()) + "px, "+ positionY(-1) + "px)" }
-}
-
 const flyAway = [
-    { transform: "translate("+ positionX(generateDir()) + "px, "+ -maxHeight + "px)" }
+    { transform: "translate("+ positionX() + "px, "+ -100 + "px)" }
+]
+
+let fallDown = [
+    { transform: "translate("+duckContainer.getBoundingClientRect().x+"px, "+ 80 * game.offsetHeight / 100 + "px)" }
 ]
 
 const duration = {
-    duration: 1000,
+    duration: 2000,
     easing: "ease-in-out",
     fill: "forwards"
 }
@@ -98,8 +157,8 @@ function generateHeightPixel(min, max) {
 }
 
 async function animateDuck() {
-    animation = duckContainer.animate(firstFlight, duration);
-    await new Promise(resolve => animation.onfinish = resolve);
+    /* animation = duckContainer.animate(firstFlight, duration);
+    await new Promise(resolve => animation.onfinish = resolve); */
 
     for (let i = 1; i < numberOfMoves; i++) {
         animation = duckContainer.animate(otherFlights(), duration);
@@ -111,12 +170,21 @@ async function animateDuck() {
 
 animateDuck();
 
-function cancel(){
-    animation.cancel;
+/* duckContainer.animate(
+    {transform: "translate("+ maxWidth +"px,"+ maxHeight +"px)"},
+    duration
+) */
+
+function fallingDown() {
+    duckContainer.animate(
+        { transform: "translate("+duckContainer.getBoundingClientRect().x+"px, "+ 80 * game.offsetHeight / 100 + "px)" }, 
+        duration);
+    duck.style.animation = "fall-down 0.2s steps(1) forwards";
 }
 
-/* window.addEventListener("resize", function() {
-    windowWidth = window.innerWidth;
-    windowHeight = window.innerHeight;
-    initalPosition();
-}); */
+console.log(duckContainer);
+    
+duck.addEventListener("click", (event) => {
+    animation.pause();
+    fallingDown();
+});

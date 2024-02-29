@@ -5,23 +5,23 @@
 
 .game {
     display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 1;
+    grid-template-columns: 3;
+    grid-template-rows: 3;
     height: 100vh;
     cursor: crosshair;
 }
 
 .sky {
-    grid-row: 1;
-    grid-column: 1;
+    grid-row: 1/ -1;
+    grid-column: 1/ -1;
     background-image: url(/resources/sprites/background/sky1.png);
     background-size: 100% 100%;
     z-index: 0;
 }
 
 .bushes {
-    grid-row: 1;
-    grid-column: 1;
+    grid-row: 1/ -1;
+    grid-column: 1/ -1;
     background-image: url(/resources/sprites/background/bushes.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;

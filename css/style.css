@@ -58,3 +58,21 @@
     font-size: 20px;
     cursor: pointer;
 }
+
+#round-text {
+    
+    z-index: 200;
+    position: absolute;
+    top: 1.5vh;
+    left: 5.25vw;
+    font-size: 3rem; 
+}
+
+#score-text {
+    
+    z-index: 200;
+    position: absolute;
+    top: 2vh;
+    left: 6.5vw;
+    font-size: 3rem; 
+}

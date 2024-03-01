@@ -157,6 +157,7 @@ function duckShootingEvent() {
             await fallingDown();
             let audioShuffle = new Audio('/resources/sounds/duck-quack.mp3');
             audioShuffle.play();
+            scoreCounter++;
             resolve();
         });
     });

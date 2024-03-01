@@ -5,6 +5,7 @@ let numberOfDucksKilled = 0;
 let duckSpeed = 2000;
 let duckFlightNumbers = 2;
 let numberOfDucksDeployed = 0;
+let scoreCounter = 0;
 
 
 startButton.addEventListener('click', () => {
@@ -26,8 +27,27 @@ function DeleteRoundDiv() {
 }
 
 async function startGame() {
+    setRoundNumber();
+    setScoreNumber();
     await dogMovement();
     playRound();
+    
+}
+
+function setRoundNumber() {
+    let roundElement = document.getElementsByClassName("round")[0];
+    let roundText = document.createElement("div");
+    roundText.setAttribute("id", "round-text");
+    roundText.textContent = `${roundCounter}`;
+    roundElement.appendChild(roundText);
+}
+
+function setScoreNumber() {
+    let scoreElement = document.getElementsByClassName("score")[0];
+    let scoreText = document.createElement("div");
+    scoreText.setAttribute("id", "score-text");
+    scoreText.textContent = `${scoreCounter}`;
+    scoreElement.appendChild(scoreText);
 }
 
 async function playRound() {

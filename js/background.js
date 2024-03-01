@@ -1,11 +1,5 @@
-
 let numOfBulletsIma = document.getElementById('numOfBullets');
 let numOfBullets = 5;
-
-
-
-
-
 
 const paintRed = () => {
     hitDuck.style.background = "url(/resources/sprites/scoreImages/hit/duckred.png)";
@@ -24,17 +18,11 @@ const changeNumOfBullets = (num) => {
     numOfBulletsIma.style.backgroundSize = "100% 100%";
 }
 let changeNumOfBulletsWithClick = () => {
-    if(numOfBullets >= 0){
-     changeNumOfBullets(--numOfBullets);
+    if(numOfBullets > 0){
+     changeNumOfBullets(numOfBullets--);
+     console.log(numOfBullets);
     }
     paintRed();
 }
-
-document.addEventListener('click',() => changeNumOfBulletsWithClick());
-
-
-
-
-
-
-
+const gameScreen = document.querySelector(".game");
+gameScreen.addEventListener('click',() => changeNumOfBulletsWithClick());

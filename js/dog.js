@@ -54,6 +54,8 @@ window.onload = () => {
 } */
 
 function dogMovement() {
+    dog.style.zIndex = "30";
+    dog.style.transform = "scale(3)";
     return new Promise((resolve) => {
     dogWalk();
     setTimeout(() => {
@@ -102,5 +104,7 @@ const dogHoldOneDuck = () => {
     dog.className = "hold-one-duck";
 }
 const dogHoldTwoDucks = () => {
+    dog.style.zIndex = "1";
+    dog.style.transform = "scale(3)";
     dog.className = "hold-two-ducks";
 }

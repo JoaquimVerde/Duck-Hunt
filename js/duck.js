@@ -1,10 +1,22 @@
 const game = document.querySelector(".game");
 let duckContainer;
 let duck;
+
 let speed;
 let numberOfMoves;
 
+let minWidth = generateWidth(1);
+let maxWidth = generateWidth(95);
+let minHeight = generateHeight(1)
+let maxHeight = generateHeight(58);
+
+let animation;
+let prevPosX;
+let prevPosY;
+
 function createDuck(velocity, flightNumbers) {
+    speed = velocity;
+    numberOfMoves = flightNumbers;
     duckContainer = document.createElement("div");
     duck = document.createElement("div");
     duckContainer.classList.add("duck-container");
@@ -12,26 +24,13 @@ function createDuck(velocity, flightNumbers) {
     duckContainer.appendChild(duck);
     game.appendChild(duckContainer);
     spawnDuck();
-    speed = velocity;
-    numberOfMoves = flightNumbers;
-}
-
-let minWidth = game.offsetWidth / 100;
-let maxWidth = 95 * game.offsetWidth / 100;
-let minHeight = game.offsetHeight / 100;
-let maxHeight = 58 * game.offsetHeight / 100;
-
-let animation;
-let prevPosX;
-let prevPosY;
-
-function generateDir() {
-    return Math.random() < 0.5 ? -1 : 1;
 }
 
 function spawnDuck() {
+    prevPosX = generateWidth(25, 75);
+    prevPosY = generateHeight(65);
     duckContainer.style.transform = 
-    "translate("+ generateWidthPixel(25, 75) + "px, "+ 65 * game.offsetHeight / 100 + "px)";
+    "translate("+ prevPosX + "px, "+ prevPosY + "px)";
     duckShootingEvent();
 };
 
@@ -43,8 +42,12 @@ function positionY() {
     return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
 }
 
-function otherFlights() {
+function determineDuckPath(value) {
     const posX = positionX();
+    if(!isNaN(value)){
+        changeDuckBackground(posX, -100, prevPosX, prevPosY);
+        return { transform: "translate("+ posX + "px, -100px)" }
+    }
     const posY = positionY();
     changeDuckBackground(posX, posY, prevPosX, prevPosY);
     prevPosX = posX;
@@ -62,7 +65,7 @@ function checkDirectionX(posX, prevPosX) {
 }
 
 function checkDirectionY(posY, prevPosY) {
-    if (prevPosY < posY) {
+    if (prevPosY < posY ) {
         return 1;
     }
     else {
@@ -87,51 +90,73 @@ function changeDuckBackground(posX, posY, prevPosX, prevPosY) {
     }
 }
 
-function generateWidthPixel(min, max) {
+function generateWidth(min, max) {
+    if(isNaN(max)){
+        max = min;
+    }
     const random = Math.floor(Math.random() * (max - min) + min);
     return (random * game.offsetWidth) / 100;
 }
 
-function generateHeightPixel(min, max) {
+function generateHeight(min, max) {
+    if(isNaN(max)){
+        max = min;
+    }
     const random = Math.floor(Math.random() * (max - min) + min);
     return (random * game.offsetHeight) / 100;
 }
 
 async function animateDuck() {
     for (let i = 1; i < numberOfMoves; i++) {
-        animation = duckContainer.animate(otherFlights(), 
+        animation = duckContainer.animate(determineDuckPath(), 
         { duration: speed, easing: "ease-in-out", fill: "forwards" });
         await new Promise(resolve => animation.onfinish = resolve);
     }
-    
-    animation = duckContainer.animate(
-        {transform: "translate("+ positionX() + "px, "+ -100 + "px)"},
+    return Promise.race([
+    new Promise(resolve => {
+    animation = duckContainer.animate(determineDuckPath(0),
         { duration: speed, easing: "ease-in-out", fill: "forwards" })
         .onfinish  = () => {
-                duck.remove();
-                duckContainer.remove();
-            }
+            duckCleanup();
+            resolve();
+        }
+    }),
+    duckShootingEvent()
+    ]);
 }
 
-function fallingDown() {
-    duckContainer.animate(
-        { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ 80 * game.offsetHeight / 100 + "px)" }, 
-        { duration: speed, easing: "ease-in-out", fill: "forwards" })
-        .onfinish  = () => {
-            duck.remove();
-            duckContainer.remove();
-        };
+function duckCleanup() {
+    duck.remove();
+    duckContainer.remove();
+    duckContainer = null;
+    duck = null;
+    animation = null;
+    prevPosX = null;
+    prevPosY = null;
+}
+
+async function fallingDown() {
+    return new Promise(resolve => {
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
+    duckContainer.animate(
+        { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ generateHeight(80) + "px)" }, 
+        { duration: speed, easing: "ease-in-out", fill: "forwards" }).onfinish  = () => {
+            duckCleanup();
+            setTimeout(() => {
+                dogHoldOneDuck();
+            }, 1000);
+        };
+        resolve();
+    });
 }
 
 function duckShootingEvent() {
-    duck.addEventListener("click", async () => {
-        animation.pause();
-        fallingDown();
-        setTimeout(() => {
-            dogHoldOneDuck();
-        }, 1000);
-        
+    return new Promise(resolve => {
+        duck.addEventListener("click", async () => {
+            animation.pause;
+            await fallingDown();
+            resolve();
+        });
     });
 }
 

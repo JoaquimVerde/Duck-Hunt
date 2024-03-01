@@ -94,6 +94,8 @@ const hideDog = () => {
 }
 
 const dogLaugh = () => {
+    dog.style.zIndex = "1";
+    dog.style.transform = "scale(3)";
     dog.className = "laugh";
     let audioShuffle = new Audio('/resources/sounds/wah-wah.mp3');
     audioShuffle.play();

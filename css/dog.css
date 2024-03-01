@@ -57,11 +57,11 @@
         margin-left: 42%;
     }
     50% {
-        margin-left: 50%;
+        margin-left: 45%;
         bottom: 40%;
     }
     100%{
-        margin-left: 55%;
+        margin-left: 50%;
         bottom: 45%;
     }
 }

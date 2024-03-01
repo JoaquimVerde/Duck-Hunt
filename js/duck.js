@@ -155,6 +155,8 @@ function duckShootingEvent() {
         duck.addEventListener("click", async () => {
             animation.pause;
             await fallingDown();
+        let audioShuffle = new Audio('/resources/sounds/duck-quack.mp3');
+        audioShuffle.play();
             resolve();
         });
     });

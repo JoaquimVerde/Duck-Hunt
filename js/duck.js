@@ -1,16 +1,18 @@
 const game = document.querySelector(".game");
-const duckContainer = document.createElement("div");
-const duck = document.createElement("div");
-duckContainer.classList.add("duck-container");
-duck.classList.add("duck");
-duckContainer.appendChild(duck);
-game.appendChild(duckContainer);
+let duckContainer;
+let duck;
 
+function createDuck() {
+    duckContainer = document.createElement("div");
+    duck = document.createElement("div");
+    duckContainer.classList.add("duck-container");
+    duck.classList.add("duck");
+    duckContainer.appendChild(duck);
+    game.appendChild(duckContainer);
+    spawnDuck();
+}
 
 let numberOfMoves = 20;
-
-let currentWidth;
-let currentHeight;
 
 let minWidth = game.offsetWidth / 100;
 let maxWidth = 95 * game.offsetWidth / 100;
@@ -27,13 +29,11 @@ function generateDir() {
     return Math.random() < 0.5 ? -1 : 1;
 }
 
-function initalPosition() {
+function spawnDuck() {
     duckContainer.style.transform = 
     "translate("+ generateWidthPixel(25, 75) + "px, "+ 65 * game.offsetHeight / 100 + "px)";
-    prevPosX = duckContainer.getBoundingClientRect().x;
-    prevPosY = duckContainer.getBoundingClientRect().y;
+    duckShootingEvent();
 };
-initalPosition();
 
 function positionX() {
     return Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
@@ -50,8 +50,7 @@ function otherFlights() {
     prevPosX = posX;
     prevPosY = posY;
     console.log(prevPosX);
-    const result = { transform: "translate("+ posX + "px, "+ posY + "px)" }
-    return result;
+    return { transform: "translate("+ posX + "px, "+ posY + "px)" }
 }
 
 function checkDirectionX(posX, prevPosX) {
@@ -89,17 +88,8 @@ function changeDuckBackground(posX, posY, prevPosX, prevPosY) {
     }
 }
 
-
-const flyAway = [
-    { transform: "translate("+ positionX() + "px, "+ -100 + "px)" }
-]
-
-let fallDown = [
-    { transform: "translate("+duckContainer.getBoundingClientRect().x+"px, "+ 80 * game.offsetHeight / 100 + "px)" }
-]
-
 const duration = {
-    duration: 2000,
+    duration: 1000,
     easing: "ease-in-out",
     fill: "forwards"
 }
@@ -116,9 +106,6 @@ function generateHeightPixel(min, max) {
 }
 
 async function animateDuck() {
-    /* animation = duckContainer.animate(firstFlight, duration);
-    await new Promise(resolve => animation.onfinish = resolve); */
-
     for (let i = 1; i < numberOfMoves; i++) {
         animation = duckContainer.animate(otherFlights(), duration);
         await new Promise(resolve => animation.onfinish = resolve);
@@ -127,21 +114,23 @@ async function animateDuck() {
     animation = duckContainer.animate(flyAway, duration);
 }
 
-animateDuck();
-
 function fallingDown() {
     duckContainer.animate(
-        { transform: "translate("+duckContainer.getBoundingClientRect().x+"px, "+ 80 * game.offsetHeight / 100 + "px)" }, 
+        { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ 80 * game.offsetHeight / 100 + "px)" }, 
         duration);
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
 }
 
-console.log(duckContainer);
-    
-duck.addEventListener("click", (event) => {
-    animation.pause();
-    fallingDown();
-});
+function duckShootingEvent() {
+    duck.addEventListener("click", async () => {
+        animation.pause();
+        fallingDown();
+        setTimeout(() => {
+            dogHoldOneDuck();
+        }, 1000);
+        
+    });
+}
 
 window.onclick = () => {
     let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');

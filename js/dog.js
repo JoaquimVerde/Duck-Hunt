@@ -9,7 +9,7 @@ window.onload = () => {
 
 
 
-const dogMovement = () => {
+/* const dogMovement = () => {
 
     dogWalk();
 
@@ -28,8 +28,51 @@ const dogMovement = () => {
     setTimeout(() => {
         hideDog();
     }, 8050);
-}
+} */
 
+/* function dogMovement() {
+    return new Promise((resolve) => {
+        dogWalk();
+        setTimeout(() => {
+            dogSmell();
+        }, 5500);
+
+        setTimeout(() => {
+            dogJump();
+        }, 7500);
+
+        setTimeout(() => {
+            shrinkDog();
+        }, 8000);
+
+        setTimeout(() => {
+            hideDog();
+            resolve();
+        }, 8050);
+        resolve();
+    });
+} */
+
+function dogMovement() {
+    return new Promise((resolve) => {
+    dogWalk();
+    setTimeout(() => {
+        dogSmell();
+    }, 5500);
+    setTimeout(() => {
+        dogJump();
+    }, 7500);
+    setTimeout(() => {
+        shrinkDog();
+    }, 8000);
+    setTimeout(() => {
+        hideDog();
+    }, 8050);
+    setTimeout(() => {
+        resolve();;
+    }, 9500);
+    });
+}
 
 
 const dogWalk = () => {
@@ -54,6 +97,8 @@ const dogLaugh = () => {
     audioShuffle.play();
 }
 const dogHoldOneDuck = () => {
+    dog.style.zIndex = "1";
+    dog.style.transform = "scale(3)";
     dog.className = "hold-one-duck";
 }
 const dogHoldTwoDucks = () => {

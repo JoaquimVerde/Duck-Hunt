@@ -1,8 +1,10 @@
 const game = document.querySelector(".game");
 let duckContainer;
 let duck;
+let speed;
+let numberOfMoves;
 
-function createDuck() {
+function createDuck(velocity, flightNumbers) {
     duckContainer = document.createElement("div");
     duck = document.createElement("div");
     duckContainer.classList.add("duck-container");
@@ -10,18 +12,16 @@ function createDuck() {
     duckContainer.appendChild(duck);
     game.appendChild(duckContainer);
     spawnDuck();
+    speed = velocity;
+    numberOfMoves = flightNumbers;
 }
-
-let numberOfMoves = 20;
 
 let minWidth = game.offsetWidth / 100;
 let maxWidth = 95 * game.offsetWidth / 100;
-
 let minHeight = game.offsetHeight / 100;
 let maxHeight = 58 * game.offsetHeight / 100;
 
 let animation;
-
 let prevPosX;
 let prevPosY;
 
@@ -49,7 +49,6 @@ function otherFlights() {
     changeDuckBackground(posX, posY, prevPosX, prevPosY);
     prevPosX = posX;
     prevPosY = posY;
-    console.log(prevPosX);
     return { transform: "translate("+ posX + "px, "+ posY + "px)" }
 }
 
@@ -88,13 +87,6 @@ function changeDuckBackground(posX, posY, prevPosX, prevPosY) {
     }
 }
 
-const duration = {
-    duration: 1000,
-    easing: "ease-in-out",
-    fill: "forwards"
-}
-
-
 function generateWidthPixel(min, max) {
     const random = Math.floor(Math.random() * (max - min) + min);
     return (random * game.offsetWidth) / 100;
@@ -107,17 +99,28 @@ function generateHeightPixel(min, max) {
 
 async function animateDuck() {
     for (let i = 1; i < numberOfMoves; i++) {
-        animation = duckContainer.animate(otherFlights(), duration);
+        animation = duckContainer.animate(otherFlights(), 
+        { duration: speed, easing: "ease-in-out", fill: "forwards" });
         await new Promise(resolve => animation.onfinish = resolve);
     }
     
-    animation = duckContainer.animate(flyAway, duration);
+    animation = duckContainer.animate(
+        {transform: "translate("+ positionX() + "px, "+ -100 + "px)"},
+        { duration: speed, easing: "ease-in-out", fill: "forwards" })
+        .onfinish  = () => {
+                duck.remove();
+                duckContainer.remove();
+            }
 }
 
 function fallingDown() {
     duckContainer.animate(
         { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ 80 * game.offsetHeight / 100 + "px)" }, 
-        duration);
+        { duration: speed, easing: "ease-in-out", fill: "forwards" })
+        .onfinish  = () => {
+            duck.remove();
+            duckContainer.remove();
+        };
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
 }
 

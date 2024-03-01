@@ -24,6 +24,6 @@ async function startGame() {
     setTimeout(() => {
         DeleteRoundDiv();
     }, 1000);
-    createDuck();
+    createDuck(2000, 7);
     animateDuck();
 }

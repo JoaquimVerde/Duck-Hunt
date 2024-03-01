@@ -26,9 +26,8 @@ const changeNumOfBullets = (num) => {
 let changeNumOfBulletsWithClick = () => {
     if(numOfBullets >= 0){
      changeNumOfBullets(--numOfBullets);
-     paintRed();
     }
-    
+    paintRed();
 }
 
 document.addEventListener('click',() => changeNumOfBulletsWithClick());

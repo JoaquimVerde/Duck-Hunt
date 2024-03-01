@@ -29,3 +29,20 @@
     z-index: 10;
     pointer-events: none;
 }
+
+.welcomeScreen {
+    background-color: bisque;
+    height: 100vh;
+}
+
+#startGame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}

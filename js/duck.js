@@ -1,22 +1,29 @@
 const game = document.querySelector(".game");
 let duckContainer;
 let duck;
-
 let speed;
 let numberOfMoves;
-
-let minWidth = generateWidth(1);
-let maxWidth = generateWidth(95);
-let minHeight = generateHeight(1)
-let maxHeight = generateHeight(58);
-
+let minWidth;
+let maxWidth;
+let minHeight;
+let maxHeight;
 let animation;
 let prevPosX;
 let prevPosY;
+let isAnimationPaused;
+
+function determineLimits(){
+    minWidth = generateWidth(1);
+    maxWidth = generateWidth(95);
+    minHeight = generateHeight(1);
+    maxHeight = generateHeight(58);
+    console.log(minWidth, maxWidth, minHeight, maxHeight);
+}
 
 function createDuck(velocity, flightNumbers) {
     speed = velocity;
     numberOfMoves = flightNumbers;
+    isAnimationPaused = false;
     duckContainer = document.createElement("div");
     duck = document.createElement("div");
     duckContainer.classList.add("duck-container");
@@ -44,11 +51,13 @@ function positionY() {
 
 function determineDuckPath(value) {
     const posX = positionX();
+    console.log(posX);
     if(!isNaN(value)){
         changeDuckBackground(posX, -100, prevPosX, prevPosY);
         return { transform: "translate("+ posX + "px, -100px)" }
     }
     const posY = positionY();
+    console.log(posY);
     changeDuckBackground(posX, posY, prevPosX, prevPosY);
     prevPosX = posX;
     prevPosY = posY;
@@ -110,60 +119,60 @@ async function animateDuck() {
     for (let i = 1; i < numberOfMoves; i++) {
         animation = duckContainer.animate(determineDuckPath(), 
         { duration: speed, easing: "ease-in-out", fill: "forwards" });
-        await new Promise(resolve => animation.onfinish = resolve);
+        await new Promise(resolve => animation.onfinish = () => {
+            if (!isAnimationPaused) {
+                resolve();
+            }
+        });
     }
-    return Promise.race([
-    new Promise(resolve => {
+    return new Promise(resolve => {
     animation = duckContainer.animate(determineDuckPath(0),
         { duration: speed, easing: "ease-in-out", fill: "forwards" })
         .onfinish  = () => {
-            duckCleanup();
-            resolve();
+            if (!isAnimationPaused) {
+                duckCleanup();
+                resolve();
+            
+            }
         }
-    }),
-    duckShootingEvent()
-    ]);
+    });
+}
+
+async function makeDucksFly() {
+    return Promise.race([animateDuck(), duckShootingEvent()]);
 }
 
 function duckCleanup() {
     duck.remove();
     duckContainer.remove();
-    duckContainer = null;
-    duck = null;
-    animation = null;
-    prevPosX = null;
-    prevPosY = null;
 }
 
-async function fallingDown() {
+function fallingDown() {
     return new Promise(resolve => {
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
     duckContainer.animate(
         { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ generateHeight(80) + "px)" }, 
-        { duration: speed, easing: "ease-in-out", fill: "forwards" }).onfinish  = () => {
+        { duration: speed, easing: "ease-in-out", fill: "forwards" })
+        .onfinish  = () => {
             duckCleanup();
+            dogHoldOneDuck();
             setTimeout(() => {
-                dogHoldOneDuck();
-            }, 1000);
-        };
-        resolve();
+                resolve();
+            }, 2000);
+        }
     });
 }
 
 function duckShootingEvent() {
     return new Promise(resolve => {
         duck.addEventListener("click", async () => {
-            animation.pause;
-            await fallingDown();
-            let audioShuffle = new Audio('/resources/sounds/duck-quack.mp3');
-            audioShuffle.play();
-            scoreCounter++;
-            resolve();
+            if(numOfBullets > 0){
+                animation.pause();
+                numberOfDucksKilled++;
+                isAnimationPaused = true;
+                await fallingDown();
+                resolve();
+            }
         });
     });
-}
-
-window.onclick = () => {
-    let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
-    audioShuffle.play();
 }

@@ -35,6 +35,23 @@
     height: 100vh;
 }
 
+.gameOverScreen {
+    background-color: green;
+    height: 100vh;
+}
+
+#restart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:rebeccapurple;
+    color: white;
+    padding: 16px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 #startGame {
     position: absolute;
     top: 50%;

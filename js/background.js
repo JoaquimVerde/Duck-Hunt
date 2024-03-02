@@ -19,10 +19,15 @@ const changeNumOfBullets = (num) => {
 }
 let changeNumOfBulletsWithClick = () => {
     if(numOfBullets > 0){
+     let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
+     audioShuffle.play();
      changeNumOfBullets(numOfBullets--);
      console.log(numOfBullets);
     }
     paintRed();
 }
-const gameScreen = document.querySelector(".game");
-gameScreen.addEventListener('click',() => changeNumOfBulletsWithClick());
+function startShooting(){
+    const gameScreen = document.querySelector(".game");
+    gameScreen.addEventListener('click',() => {
+        changeNumOfBulletsWithClick()});
+}

@@ -1,20 +1,24 @@
 const game = document.querySelector(".game");
 let duckContainer;
 let duck;
-
 let speed;
 let numberOfMoves;
-
-let minWidth = generateWidth(1);
-let maxWidth = generateWidth(95);
-let minHeight = generateHeight(1)
-let maxHeight = generateHeight(58);
-
+let minWidth;
+let maxWidth;
+let minHeight;
+let maxHeight;
 let animation;
 let prevPosX;
 let prevPosY;
-
 let isAnimationPaused;
+
+function determineLimits(){
+    minWidth = generateWidth(1);
+    maxWidth = generateWidth(95);
+    minHeight = generateHeight(1);
+    maxHeight = generateHeight(58);
+    console.log(minWidth, maxWidth, minHeight, maxHeight);
+}
 
 function createDuck(velocity, flightNumbers) {
     speed = velocity;
@@ -47,11 +51,13 @@ function positionY() {
 
 function determineDuckPath(value) {
     const posX = positionX();
+    console.log(posX);
     if(!isNaN(value)){
         changeDuckBackground(posX, -100, prevPosX, prevPosY);
         return { transform: "translate("+ posX + "px, -100px)" }
     }
     const posY = positionY();
+    console.log(posY);
     changeDuckBackground(posX, posY, prevPosX, prevPosY);
     prevPosX = posX;
     prevPosY = posY;
@@ -126,25 +132,19 @@ async function animateDuck() {
             if (!isAnimationPaused) {
                 duckCleanup();
                 resolve();
+            
             }
         }
     });
 }
 
-
 async function makeDucksFly() {
     return Promise.race([animateDuck(), duckShootingEvent()]);
 }
 
-
 function duckCleanup() {
     duck.remove();
     duckContainer.remove();
-    duckContainer = null;
-    duck = null;
-    animation = null;
-    prevPosX = null;
-    prevPosY = null;
 }
 
 function fallingDown() {
@@ -155,10 +155,10 @@ function fallingDown() {
         { duration: speed, easing: "ease-in-out", fill: "forwards" })
         .onfinish  = () => {
             duckCleanup();
+            dogHoldOneDuck();
             setTimeout(() => {
-                dogHoldOneDuck();
                 resolve();
-            }, 1000);
+            }, 2000);
         }
     });
 }
@@ -168,6 +168,7 @@ function duckShootingEvent() {
         duck.addEventListener("click", async () => {
             if(numOfBullets > 0){
                 animation.pause();
+                numberOfDucksKilled++;
                 isAnimationPaused = true;
                 await fallingDown();
                 resolve();
@@ -175,7 +176,3 @@ function duckShootingEvent() {
         });
     });
 }
-/* window.onclick = () => {
-    let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
-    audioShuffle.play();
-} */

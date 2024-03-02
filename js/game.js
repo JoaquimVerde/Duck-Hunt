@@ -1,9 +1,10 @@
 const startButton = document.getElementById('startGame');
+const restartButton = document.getElementById('restart');
 let numberOfDucksPerRound = 2;
 let roundCounter = 1;
 let numberOfDucksKilled = 0;
 let duckSpeed = 2000;
-let duckFlightNumbers = 2;
+let duckFlightNumbers = 7;
 let numberOfDucksDeployed = 0;
 
 
@@ -13,26 +14,32 @@ startButton.addEventListener('click', () => {
   startGame();
 });
 
+restartButton.addEventListener('click', () => {
+    document.querySelector('.gameOverScreen').style.display = 'none';
+    document.querySelector('.welcomeScreen').style.display = 'block';
+});
+
 function createRoundDiv(roundCounter) {
-    const roundDiv = document.createElement("div");
+    return new Promise(resolve => {
+    let roundDiv = document.createElement("div");
     roundDiv.classList.add("roundCounter");
     roundDiv.textContent = "Round: " + roundCounter;
     game.appendChild(roundDiv);
-    setTimeout(() => {roundDiv.remove();}, 1000);
-}
-
-function deleteRoundDiv() {
-    const roundDiv = document.querySelector(".roundCounter");
-    roundDiv.remove();
+    setTimeout(() => {
+        roundDiv.remove();
+        resolve();
+    }, 1000);
+    });
 }
 
 async function startGame() {
+    determineLimits();
     await dogMovement();
     playRound();
 }
 
 async function playRound() {
-    /* createRoundDiv(roundCounter); */
+    await createRoundDiv(roundCounter);
 
     startShooting();
     while(numOfBullets > 0 && numberOfDucksDeployed < numberOfDucksPerRound){
@@ -59,28 +66,14 @@ function endRound(){
         roundCounter++;
         numOfBullets = 5;
         numberOfDucksDeployed = 0;
+        numberOfDucksKilled = 0;
         playRound();
     }
 }
 
 function endGame(){
     document.querySelector('.game').style.display = 'none';
-    document.querySelector('.welcomeScreen').style.display = 'block';
+    document.querySelector('.gameOverScreen').style.display = 'block';
     roundCounter = 1;
     numberOfDucksKilled = 0;
 }
-
-
-
-
-
-/* 
-    Game ends when player is out of bullets || missed at least 50% of the ducks in a round;
-    Round ends when all ducks are shot || when all ducks finish their animation;
-    Round counter increments when round ends;
-    Round counter is displayed on screen;
-    Refill bullets when round starts;
-
-
-
-*/

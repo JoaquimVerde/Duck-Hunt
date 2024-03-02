@@ -18,9 +18,10 @@ function createRoundDiv(roundCounter) {
     roundDiv.classList.add("roundCounter");
     roundDiv.textContent = "Round: " + roundCounter;
     game.appendChild(roundDiv);
+    setTimeout(() => {roundDiv.remove();}, 1000);
 }
 
-function DeleteRoundDiv() {
+function deleteRoundDiv() {
     const roundDiv = document.querySelector(".roundCounter");
     roundDiv.remove();
 }
@@ -31,9 +32,9 @@ async function startGame() {
 }
 
 async function playRound() {
-    createRoundDiv(roundCounter);
-    setTimeout(() => {DeleteRoundDiv();}, 1000);
+    /* createRoundDiv(roundCounter); */
 
+    startShooting();
     while(numOfBullets > 0 && numberOfDucksDeployed < numberOfDucksPerRound){
         for (let i = 0; i <= numberOfDucksPerRound; i++) {
             if(numOfBullets === 0){
@@ -42,7 +43,7 @@ async function playRound() {
             }
             createDuck(duckSpeed, duckFlightNumbers);
             numberOfDucksDeployed++;
-            await animateDuck();
+            await makeDucksFly();
         }
     }
     endRound();

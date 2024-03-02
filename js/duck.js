@@ -14,9 +14,12 @@ let animation;
 let prevPosX;
 let prevPosY;
 
+let isAnimationPaused;
+
 function createDuck(velocity, flightNumbers) {
     speed = velocity;
     numberOfMoves = flightNumbers;
+    isAnimationPaused = false;
     duckContainer = document.createElement("div");
     duck = document.createElement("div");
     duckContainer.classList.add("duck-container");
@@ -110,20 +113,29 @@ async function animateDuck() {
     for (let i = 1; i < numberOfMoves; i++) {
         animation = duckContainer.animate(determineDuckPath(), 
         { duration: speed, easing: "ease-in-out", fill: "forwards" });
-        await new Promise(resolve => animation.onfinish = resolve);
+        await new Promise(resolve => animation.onfinish = () => {
+            if (!isAnimationPaused) {
+                resolve();
+            }
+        });
     }
-    return Promise.race([
-    new Promise(resolve => {
+    return new Promise(resolve => {
     animation = duckContainer.animate(determineDuckPath(0),
         { duration: speed, easing: "ease-in-out", fill: "forwards" })
         .onfinish  = () => {
-            duckCleanup();
-            resolve();
+            if (!isAnimationPaused) {
+                duckCleanup();
+                resolve();
+            }
         }
-    }),
-    duckShootingEvent()
-    ]);
+    });
 }
+
+
+async function makeDucksFly() {
+    return Promise.race([animateDuck(), duckShootingEvent()]);
+}
+
 
 function duckCleanup() {
     duck.remove();
@@ -135,32 +147,35 @@ function duckCleanup() {
     prevPosY = null;
 }
 
-async function fallingDown() {
+function fallingDown() {
     return new Promise(resolve => {
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
     duckContainer.animate(
         { transform: "translate("+ duckContainer.getBoundingClientRect().x +"px, "+ generateHeight(80) + "px)" }, 
-        { duration: speed, easing: "ease-in-out", fill: "forwards" }).onfinish  = () => {
+        { duration: speed, easing: "ease-in-out", fill: "forwards" })
+        .onfinish  = () => {
             duckCleanup();
             setTimeout(() => {
                 dogHoldOneDuck();
+                resolve();
             }, 1000);
-        };
-        resolve();
+        }
     });
 }
 
 function duckShootingEvent() {
     return new Promise(resolve => {
         duck.addEventListener("click", async () => {
-            animation.pause;
-            await fallingDown();
-            resolve();
+            if(numOfBullets > 0){
+                animation.pause();
+                isAnimationPaused = true;
+                await fallingDown();
+                resolve();
+            }
         });
     });
 }
-
-window.onclick = () => {
+/* window.onclick = () => {
     let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
     audioShuffle.play();
-}
+} */

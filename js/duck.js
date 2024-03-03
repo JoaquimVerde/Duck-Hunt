@@ -148,6 +148,8 @@ function duckCleanup() {
 }
 
 function fallingDown() {
+    scoreCounter++;
+    updateScoreText();
     return new Promise(resolve => {
     duck.style.animation = "fall-down 0.2s steps(1) forwards";
     duckContainer.animate(
@@ -167,6 +169,8 @@ function duckShootingEvent() {
     return new Promise(resolve => {
         duck.addEventListener("click", async () => {
             if(numOfBullets > 0){
+                let audioShuffle = new Audio('/resources/sounds/duck-quack.mp3');
+                audioShuffle.play();
                 animation.pause();
                 numberOfDucksKilled++;
                 isAnimationPaused = true;
@@ -175,4 +179,8 @@ function duckShootingEvent() {
             }
         });
     });
+}
+
+const updateScoreText = () => {
+    document.getElementById("score-text").textContent = `${scoreCounter}`;
 }

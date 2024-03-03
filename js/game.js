@@ -35,8 +35,6 @@ function createRoundDiv(roundCounter) {
 
 async function startGame() {
     determineLimits();
-    setRoundNumber();
-    setScoreNumber();
     await dogMovement();
     playRound();
     
@@ -49,6 +47,9 @@ function setRoundNumber() {
     roundText.textContent = `${roundCounter}`;
     roundElement.appendChild(roundText);
 }
+const removeRoundText = () => {
+    document.getElementById("round-text").remove();
+}
 
 function setScoreNumber() {
     let scoreElement = document.getElementsByClassName("score")[0];
@@ -57,8 +58,13 @@ function setScoreNumber() {
     scoreText.textContent = `${scoreCounter}`;
     scoreElement.appendChild(scoreText);
 }
+const removeScoreText = () => {
+    document.getElementById("score-text").remove();
+}
 
 async function playRound() {
+    setRoundNumber();
+    setScoreNumber();
     await createRoundDiv(roundCounter);
 
     startShooting();
@@ -83,6 +89,8 @@ function endRound(){
         endGame();
     }
     else {
+        removeRoundText();
+        removeScoreText();
         roundCounter++;
         numOfBullets = 5;
         numberOfDucksDeployed = 0;
@@ -94,6 +102,9 @@ function endRound(){
 function endGame(){
     document.querySelector('.game').style.display = 'none';
     document.querySelector('.gameOverScreen').style.display = 'block';
+    removeRoundText();
+    removeScoreText();
     roundCounter = 1;
+    scoreCounter = 0;
     numberOfDucksKilled = 0;
 }

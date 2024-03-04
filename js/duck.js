@@ -173,6 +173,8 @@ function duckShootingEvent() {
                 audioShuffle.play();
                 animation.pause();
                 numberOfDucksKilled++;
+                let hitDuck = getHitDuckId(numberOfDucksDeployed);
+                paintRed(hitDuck);
                 isAnimationPaused = true;
                 await fallingDown();
                 resolve();

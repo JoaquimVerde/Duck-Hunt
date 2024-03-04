@@ -93,6 +93,7 @@ function endRound(){
         removeScoreText();
         roundCounter++;
         numOfBullets = 5;
+        resetHitDucks();
         numberOfDucksDeployed = 0;
         numberOfDucksKilled = 0;
         playRound();

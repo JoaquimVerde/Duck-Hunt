@@ -31,7 +31,8 @@ let changeNumOfBulletsWithClick = () => {
     if(numOfBullets > 0){
      let audioShuffle = new Audio('/resources/sounds/sniper-rifle.mp3');
      audioShuffle.play();
-     changeNumOfBullets(numOfBullets--);
+
+     changeNumOfBullets(--numOfBullets);
      console.log(numOfBullets);
     }
 }

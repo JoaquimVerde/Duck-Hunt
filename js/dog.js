@@ -3,56 +3,6 @@ const dog = document.getElementById("dog");
 
 
 
-window.onload = () => {
-    /*dogMovement();*/
-}
-
-
-
-/* const dogMovement = () => {
-
-    dogWalk();
-
-    setTimeout(() => {
-        dogSmell();
-    }, 5500);
-
-    setTimeout(() => {
-        dogJump();
-    }, 7500);
-
-    setTimeout(() => {
-        shrinkDog();
-    }, 8000);
-
-    setTimeout(() => {
-        hideDog();
-    }, 8050);
-} */
-
-/* function dogMovement() {
-    return new Promise((resolve) => {
-        dogWalk();
-        setTimeout(() => {
-            dogSmell();
-        }, 5500);
-
-        setTimeout(() => {
-            dogJump();
-        }, 7500);
-
-        setTimeout(() => {
-            shrinkDog();
-        }, 8000);
-
-        setTimeout(() => {
-            hideDog();
-            resolve();
-        }, 8050);
-        resolve();
-    });
-} */
-
 function dogMovement() {
     dog.style.zIndex = "30";
     dog.style.transform = "scale(3)";
